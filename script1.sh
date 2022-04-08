@@ -16,7 +16,7 @@ sed -i "s/$allow_old/$allow_new/" $file_named_conf
 # ask user for domain name
 read -p "Insert a domain name: " domain_name
 
-# add a master zone to named.conf
+# add a master zone to named.conf beafore a specific marker
 master_zone="zone \"$domain_name\" IN {\n       type master;\n       file \"/var/named/$domain_name.hosts\";\n};\n "
 marker="zone \".\""
 sed -i "/^$marker/i $master_zone" $file_named_conf
