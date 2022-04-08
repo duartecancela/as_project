@@ -16,4 +16,4 @@ sed -i "s/$allow_old/$allow_new/" $file_named_conf
 # ask user for domain name
 read -p "Insert a domain name: " domain_name
 
-
+# test
