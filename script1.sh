@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Script 1
+echo "Start Script 1"
 
 # initialize variables
 file_named_conf="/etc/named.conf"
@@ -35,3 +35,6 @@ www	IN	A	192.168.0.110" >> /var/named/$domain_name.hosts
 
 # restart DNS 
 systemctl restart named
+
+echo "Finish Script 1"
+
