@@ -22,14 +22,14 @@ marker="zone \".\""
 sed -i "/^$marker/i $master_zone" $file_named_conf
 
 echo -n  "\$ttl 38400
-@	IN	SOA	dns.estig.pt. mail.as.com. (
+@	IN	SOA	dns.serverasproject.dev. serverasproject.dev. (
 			1165190726 ; serial
 			10800 ; refresh
 			3600 ; retry
 			604800 ; expire
 			38400 ; minimum
 )
-	IN	NS	server.estig.pt.
+	IN	NS	serverasproject.dev.
 	IN	A	192.168.0.110
 www	IN	A	192.168.0.110" >> /var/named/$domain_name.hosts
 
