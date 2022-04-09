@@ -1,7 +1,7 @@
 # as_project
 System Administration project
 
-# vim
+# install vim + plugins
 yum install vim -y
 vi ~/.vimrc (set number) 
 yum install zip unzip -y
@@ -19,7 +19,7 @@ cd .ssh
 cat id_rsa.pub (copiar e colar no github)
 ssh-add ~/.ssh/id_rsa
 
-# inside project
+# initialize project
 git init
 git add README.md
 git add
@@ -28,7 +28,7 @@ git branch -M main
 git remote add origin git@github.com:duartecancela/as_project.git
 git push -u origin main
 
-#server global config
+# server global config
 yum install net-tools -y (ferramentas de rede)
 yum install git -y (controlo de versões)
 yum install httpd -y (servidor apache)
