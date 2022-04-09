@@ -29,6 +29,7 @@ git remote add origin git@github.com:duartecancela/as_project.git
 git push -u origin main  
 
 # server global config
+vi /etc/selinux/config (SELINUX=disabled)  
 yum install net-tools -y (ferramentas de rede)  
 yum install httpd -y (servidor apache)  
 
@@ -70,8 +71,25 @@ ftp	IN	A 	10.2.0.2
 
 )
 
-systemctl start named
+systemctl start named  
 
-nslookup test.com 192.168.0.22
-nslookup -query=mx test.com 192.168.0.22
-nslookup -type=any test.com 192.168.0.22
+nslookup test.com 192.168.0.22  
+nslookup -query=mx test.com 192.168.0.22  
+nslookup -type=any test.com 192.168.0.22  
+
+# NIS
+--server and client  
+yum install nfs-utils 
+--server 
+mkdir /storage/home  
+vi /etc/exports ( /storage/home 127.27.10.0/24(rw,hide,sync) )  
+--client  
+df -h (lista os mount do file system)  
+cd /  
+mkdir /storage/home  
+chmod -R 777 /storage/home/  
+mount -t nfs 192.13.10.1:/storage/home /storage/home  
+
+
+
+
