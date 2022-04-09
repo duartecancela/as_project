@@ -14,6 +14,7 @@ master_zone="zone \"${ip3}.${ip2}.${ip1}.in-addr.arpa\" IN {\n       type master
 marker="zone \".\""
 sed -i "/^$marker/i $master_zone" /etc/named.conf
 
+# write a arpa.host file
 echo "\$ttl 38400
 @	IN	SOA	dns.estig.pt. mail.$domain_name. (
 			1165192116
@@ -22,7 +23,10 @@ echo "\$ttl 38400
 			604800
 			38400 )
 	IN      NS	dns.estig.pt.
-1	IN      PTR	www.$domain_name.
-2	IN	PTR	ftp.$domain_name." > /var/named/${ip3}.${ip2}.${ip1}.in-addr.arpa.hosts
+110	IN      PTR	www.$domain_name.
+111	IN	PTR	ftp.$domain_name." > /var/named/${ip3}.${ip2}.${ip1}.in-addr.arpa.hosts
+
+# restart DNS 
+systemctl restart named
 
 echo "Finish Script 5"
