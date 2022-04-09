@@ -1,40 +1,40 @@
 # as_project
-System Administration project
+System Administration project  
 
 # install vim + plugins
-yum install vim -y
-vi ~/.vimrc (set number) 
-yum install zip unzip -y
-yum install wget -y
-https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/
+yum install vim -y  
+vi ~/.vimrc (set number)   
+yum install zip unzip -y  
+yum install wget -y  
+https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/  
 
 
 
 # git user config
-yum install git -y
-git config --global user.name "Duarte Cancela"
-git config --global user.email duartecancela@gmail.com
-ssh-keygen
-cd .ssh
-cat id_rsa.pub (copiar e colar no github)
-ssh-add ~/.ssh/id_rsa
+yum install git -y  
+git config --global user.name "Duarte Cancela"  
+git config --global user.email duartecancela@gmail.com  
+ssh-keygen  
+cd .ssh  
+cat id_rsa.pub (copiar e colar no github)  
+ssh-add ~/.ssh/id_rsa  
 
 # initialize project
-git init
-git add README.md
-git add
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:duartecancela/as_project.git
-git push -u origin main
+git init  
+git add README.md  
+git add  
+git commit -m "first commit"  
+git branch -M main  
+git remote add origin git@github.com:duartecancela/as_project.git  
+git push -u origin main  
 
 # server global config
-yum install net-tools -y (ferramentas de rede)
-yum install git -y (controlo de versões)
-yum install httpd -y (servidor apache)
+yum install net-tools -y (ferramentas de rede)  
+yum install git -y (controlo de versões)  
+yum install httpd -y (servidor apache)  
 
 # dns server
-yum install bind* -y (servidor dns)
+yum install bind* -y (servidor dns)  
 
 vi /etc/resolv.conf (
 
