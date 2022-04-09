@@ -30,10 +30,9 @@ git push -u origin main
 
 # server global config
 yum install net-tools -y (ferramentas de rede)  
-yum install git -y (controlo de versões)  
 yum install httpd -y (servidor apache)  
 
-# dns server
+# DNS server
 yum install bind* -y (servidor dns)  
 
 vi /etc/resolv.conf (
