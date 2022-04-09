@@ -79,7 +79,7 @@ nslookup -type=any test.com 192.168.0.22
 
 # NIS
 --server and client  
-yum install nfs-utils 
+yum install nfs-utils  
 --server 
 mkdir /storage/home  
 vi /etc/exports ( /storage/home 127.27.10.0/24(rw,hide,sync) )  
