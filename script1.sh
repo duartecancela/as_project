@@ -22,7 +22,7 @@ marker="zone \".\""
 sed -i "/^$marker/i $master_zone" $file_named_conf
 
 echo -n  "\$ttl 38400
-@	IN	SOA	dns.serverasproject.dev. serverasproject.dev. (
+@	IN	SOA	dns.serverasproject.dev. mail.serverasproject.dev. (
 			1165190726 ; serial
 			10800 ; refresh
 			3600 ; retry
