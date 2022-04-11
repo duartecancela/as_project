@@ -8,6 +8,7 @@ read -p "Insert a directory name to share inside /storage: " shared_directory
 
 # create shared directory with permissions
 mkdir -p /storage/$shared_directory
+chmod 777 /storage -R
 
 # write in /etc/expots 
 echo "/storage/${shared_directory} 192.168.1.0/24(rw,hide,sync)" >> /etc/exports
