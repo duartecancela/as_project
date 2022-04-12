@@ -3,10 +3,11 @@
 echo "Start Script 7"
 
 # NFS menu options
-read -p "NFS Menu options- Please choose a number? :
+read -p "NFS Menu options - Please choose a number? :
 1 - Create
-2 - Delete
-3 - Disable
+2 - Edit
+3 - Delete
+4 - Disable
 " menu_option
 
 
@@ -32,8 +33,22 @@ if [ $menu_option = "1" ]; then
 	systemctl restart nfs
 fi
 
-
 if [ $menu_option = "2" ]; then
+
+	# ask user which shared directory want to edit and give a new name
+	read -p "Please insert the diretory name that you want to edit? " old_directory
+	read -p "Please insert the new name for the direcory? " new_directory
+	
+	# edit shared diretory (delete old, write new and update directory)
+	sed -i "/\/$old_directory/ d" /etc/exports
+	echo "/storage/${new_directory} 192.168.1.0/24(rw,hide,sync)" >> /etc/exports
+	mv /storage/$old_directory /storage/$new_directory 	
+
+	# restart NFS service
+	systemctl restart nfs
+fi
+
+if [ $menu_option = "3" ]; then
 	# ask user which shared directory want to delete
 	read -p "Please insert the diretory name that you want to delete? " delete_directory
 	
@@ -45,7 +60,7 @@ if [ $menu_option = "2" ]; then
 	systemctl restart nfs
 fi
 
-if [ $menu_option = "3" ]; then
+if [ $menu_option = "4" ]; then
 
 	# ask user which shared directory want to disable
 	read -p "Please insert the diretory name that you want to disable? " disable_directory
