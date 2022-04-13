@@ -3,7 +3,7 @@
 echo "Start Script 4"
 
 # ask user for domain name and DNS record type
-read -p "Insert the domain name? " domain_name
+read -p "Insert the domain name to use with the record type? " domain_name
 read -p "Insert the DNS record type? A or MX :  " dns_record_type
 
 if [ $dns_record_type = "MX" -o $dns_record_type = "mx" ]; then
@@ -22,13 +22,13 @@ if [ $dns_record_type = "A" -o $dns_record_type = "a" ]; then
 
         if [ $dns_record_name = "www" ]; then
 		
-		# write new DNS record type name
+		# write new DNS record type name for www
                 echo "$dns_record_name	IN	A	192.168.0.110" >>  /var/named/$domain_name.hosts
         fi
 
         if [ $dns_record_name = "ftp" ]; then
 		
-		# write new DNS record type name
+		# write new DNS record type name for ftp
                 echo "$dns_record_name	IN	A	192.168.0.111" >> /var/named/$domain_name.hosts
         fi
 fi
