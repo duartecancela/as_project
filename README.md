@@ -30,7 +30,7 @@ git push -u origin main
 
 # server global config
 vi /etc/selinux/config (SELINUX=disabled)  
-yum install bind-utils -y
+yum install bind-utils -y  
 yum install net-tools -y (ferramentas de rede)  
 yum install httpd -y (servidor apache)  
 yum install nfs-utils (nfs service)
