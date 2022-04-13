@@ -33,15 +33,9 @@ vi /etc/selinux/config (SELINUX=disabled)
 yum install net-tools -y (ferramentas de rede)  
 yum install httpd -y (servidor apache)  
 yum install nfs-utils (nfs service)
-
-# DNS server
 yum install bind* -y (servidor dns)  
 
-vi /etc/resolv.conf (
-
-nameserver 192.168.1.164
-
-)
+# DNS server
 
 vi /etc/named.conf (
 
