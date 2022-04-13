@@ -2,8 +2,6 @@
 
 echo "Start Script 5"
 
-# test reverse master zone nslookup [domain_name] [sever_ip]
-
 # ask user for IP number and save it in 4 variables
 read -p "Insert a IP number for reverse master zone: " ip_number
 IFS=. read ip1 ip2 ip3 ip4 <<< "$ip_number"
@@ -32,8 +30,8 @@ echo "\$ttl 38400
 			604800
 			38400 )
 	IN      NS	dns.estig.pt.
-110	IN      PTR	www.$domain_name.
-111	IN	PTR	ftp.$domain_name." > /var/named/${ip3}.${ip2}.${ip1}.in-addr.arpa.hosts
+${ip4}	IN      PTR	www.$domain_name.
+${ip4}	IN	PTR	ftp.$domain_name." > /var/named/${ip3}.${ip2}.${ip1}.in-addr.arpa.hosts
 
 	# restart DNS 
 	systemctl restart named
