@@ -29,7 +29,8 @@ git remote add origin git@github.com:duartecancela/as_project.git
 git push -u origin main  
 
 # server global config
-vi /etc/selinux/config (SELINUX=disabled)  
+vi /etc/selinux/config (SELINUX=disabled)  (client and server)
+systemctl disable firewalld
 yum install bind-utils -y  
 yum install net-tools -y (ferramentas de rede)  
 yum install httpd -y (servidor apache)  
