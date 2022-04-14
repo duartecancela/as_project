@@ -8,8 +8,6 @@ yum install zip unzip -y
 yum install wget -y  
 https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/  
 
-
-
 # git user config
 yum install git -y  
 git config --global user.name "Duarte Cancela"  
@@ -19,7 +17,7 @@ cd .ssh
 cat id_rsa.pub (copiar e colar no github)  
 ssh-add ~/.ssh/id_rsa  
 
-# initialize project
+# git initialize project
 git init  
 git add README.md  
 git add  
@@ -38,7 +36,7 @@ systemctl enable httpd
 yum install nfs-utils (nfs service)
 yum install bind* -y (servidor dns)  
 
-# DNS server
+# DNS server example
 
 vi /etc/named.conf (
 
@@ -75,7 +73,7 @@ nslookup test.com 192.168.0.22
 nslookup -query=mx test.com 192.168.0.22  
 nslookup -type=any test.com 192.168.0.22  
 
-# NIS
+# NIS example  
 --server and client  
 yum install nfs-utils  
 --server  
@@ -87,6 +85,31 @@ cd /
 mkdir /storage/home  
 chmod -R 777 /storage/home/  
 mount -t nfs 192.13.10.1:/storage/home /storage/home  
+
+# Virtual Host example  
+mkdir -p /var/www/site.local  
+chown -R $USER:$USER /var/www/site.local 
+sudo chmod -R 755 /var/www  
+vi /var/www/site.local/index.html  
+vi /etc/httpd/conf.d/site.local.conf  
+
+vim /etc/httpd/conf.d/site.local.conf (  
+
+<VirtualHost *:80>  
+    ServerName www.site.local  
+    ServerAlias site.local  
+    DocumentRoot /var/www/site.local  
+	<Directory "/var/www/site.local">  
+		Options Indexes FollowSymLinks  
+		AllowOverride All  
+		Order allow,deny  
+		Allow from all  
+		Require method GET POST OPTIONS  
+	</Directory>  
+</VirtualHost>  
+
+)  
+systemctl restart httpd  
 
 
 
