@@ -33,7 +33,7 @@ yum install bind-utils -y
 yum install net-tools -y (ferramentas de rede)  
 yum install httpd -y (servidor apache)  
 systemctl enable httpd  
-yum install nfs-utils (nfs service)
+yum install nfs-utils (nfs service)  
 yum install bind* -y (servidor dns)  
 
 # DNS server example
