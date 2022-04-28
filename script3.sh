@@ -2,6 +2,11 @@
 
 echo "Start Script 3"
 
+# initialize variables
+ip=$(hostname -I)
+server_ip=$(echo "$ip" | sed 's/ //g') 
+file_named_conf="/etc/named.conf"
+
 # ask user for a domain name
 read -p "Insert a domain name to create a Virtual Host: " domain_name
 
@@ -17,7 +22,7 @@ sudo chmod -R 755 /var/www
 
 # create a Virtual Host configuration file
 echo "
-<VirtualHost *:80>
+<VirtualHost ${server_ip}:80>
     ServerName www.${domain_name}
     ServerAlias ${domain_name}
     DocumentRoot /var/www/${domain_name}
@@ -31,7 +36,26 @@ echo "
 </VirtualHost>
 " > /etc/httpd/conf.d/$domain_name.conf
 
-# restrat httpd service
+# add a master zone to named.conf beafore a specific marker
+master_zone="zone \"$domain_name\" IN {\n       type master;\n       file \"/var/named/$domain_name.hosts\";\n};\n "
+marker="zone \".\""
+sed -i "/^$marker/i $master_zone" $file_named_conf
+
+# add DNS hosts file
+echo -n  "\$ttl 38400
+@	IN	SOA	dns.serverasproject.dev. mail.serverasproject.dev. (
+			1165190726 ; serial
+			10800 ; refresh
+			3600 ; retry
+			604800 ; expire
+			38400 ; minimum
+)
+	IN	NS	serverasproject.dev.
+	IN	A	${server_ip}
+www	IN	A	${server_ip}" > /var/named/$domain_name.hosts
+
+# restart DNS and apache
+systemctl restart named
 systemctl restart httpd
 
 echo "Finish Script 3"
