@@ -42,6 +42,11 @@ if [ $choice_number = "2" ]; then
 	browseable = yes
 	public = yes
 	writeable = yes" >> /etc/samba/smb.conf
+
+# restart services
+systemctl restart smb
+systemctl restart nmb
+
 fi
 
 # Delete
