@@ -39,6 +39,3 @@ systemctl restart named
 
 echo "Finish Script 1"
 
-
-
-
