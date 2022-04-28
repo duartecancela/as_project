@@ -9,6 +9,7 @@ read -p "Select the samba Configuration:
 [3] - Delete
 [4] - Change
 [5] - Deactivate
+[6] - Map folder from Windows
 " choice_number
 
 
@@ -61,7 +62,17 @@ fi
 
 # Change
 if [ $choice_number = "4" ]; then
-	echo "..choice 4"
+	# Asks the user for the name of the folder to modify
+	read -p "***MODIFY*** Insert the name of the directory: " folder_name
+	
+	# Asks the user for the new name
+	read -p "Insert the new name: " new_folder_name
+	
+	# Modifies the name of the file in the "smb.conf" and the name of the folder
+	sed -i "s/$folder_name/$new_folder_name/g" /etc/samba/smb.conf
+
+	# Changes the name of the directory
+	mv /$folder_name /$new_folder_name
 fi
 
 # Deactivate
@@ -72,6 +83,28 @@ if [ $choice_number = "5" ]; then
 	# Disables the directory in the "smb.conf" file
 	sed -i "/$folder_name/,+4 s/^/#/" /etc/samba/smb.conf
 
+fi
+
+# Map folders from windows
+if [ $choice_number = "6" ]; then
+	# Install the service
+	yum install cifs-utils -y
+	
+	# Asks the user the windows IP and the name of the folder
+	read -p "Insert the IP of the windows machine: " ip_windows
+	read -p "Insert the name of the windows folder: " folder_windows
+	read -p "Insert the name of the new shared folder: " folder_server
+	
+	#echo "*{$ip_windows}**{$folder_windows}**{$folder_server}"
+
+	# Creates new folder in the server
+	mkdir -p /$folder_server
+
+	# Asks for the name of the windows user
+	read -p "Insert the name of the windows user: " user_windows
+	
+	# mount
+	mount -t cifs -o username=$user_windows //$ip_windows/$folder_windows /$folder_server
 fi
 
 
