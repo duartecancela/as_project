@@ -35,8 +35,14 @@ if [ $option = "3" ]; then
 
 	# delete httpd virtual host conf file and remove site diretory
 	rm -f /etc/httpd/conf.d/*$vh_name*
-	rm -r -f /var/www/$vh_name	
+	rm -r -f /var/www/$vh_name
 
+	# delete master zone in named.conf and remove file in /var/named
+        sed -i "/zone \"$vh_name\" IN {/,+3 d" /etc/named.conf
+	rm -f /var/named/*$vh_name*
+
+        # restart DNS and apache
+	systemctl restart named	
         systemctl restart httpd
 fi
 
