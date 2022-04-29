@@ -36,6 +36,17 @@ echo "
 </VirtualHost>
 " > /etc/httpd/conf.d/$domain_name.conf
 
+# initialize variables
+file_named_conf="/etc/named.conf"
+listen_old="listen-on port 53 { 127.0.0.1; };"
+listen_new="listen-on port 53 { 127.0.0.1; any; };"
+allow_old="allow-query     { localhost; };"
+allow_new="allow-query    { localhost; any; };"
+
+# change lines in named.conf
+sed -i "s/$listen_old/$listen_new/" $file_named_conf
+sed -i "s/$allow_old/$allow_new/" $file_named_conf
+
 # add a master zone to named.conf beafore a specific marker
 master_zone="zone \"$domain_name\" IN {\n       type master;\n       file \"/var/named/$domain_name.hosts\";\n};\n "
 marker="zone \".\""
