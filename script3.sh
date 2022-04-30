@@ -7,6 +7,11 @@ ip=$(hostname -I)
 server_ip=$(echo "$ip" | sed 's/ //g') 
 file_named_conf="/etc/named.conf"
 
+# list existing Virtual Hosts
+echo "-- Existing Virtual Hosts --"
+ls /etc/httpd/conf.d/*.conf
+echo "  "
+
 # ask user for a domain name
 read -p "Insert a domain name to create a Virtual Host: " domain_name
 
