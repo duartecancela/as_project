@@ -2,6 +2,11 @@
 
 echo "Start Script 5"
 
+# list existing master zones
+echo "-- Exisiting master reverse zones --"
+ls /var/named/*.in-addr.arpa.hosts
+echo " "
+
 # ask user for IP number and save it in 4 variables
 read -p "Insert a IP number for reverse master zone: " ip_number
 IFS=. read ip1 ip2 ip3 ip4 <<< "$ip_number"
