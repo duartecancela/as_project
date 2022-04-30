@@ -2,6 +2,11 @@
 
 echo "Start Script 4"
 
+# list existing master zones
+echo "-- Exisiting master zones --"
+ls /var/named/*.hosts
+echo " "
+
 # ask user for domain name and DNS record type
 read -p "Insert the domain name to insert the new record type? " domain_name
 read -p "Insert the DNS record type? A or MX :  " dns_record_type
