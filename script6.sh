@@ -3,12 +3,16 @@
 echo "Start Script 6"
 
 read -p "Please choose one of this options?
-1 - Delete a Forward Master Zone
-2 - Delete a Reverse Master zone 
-3 - Delete a Virtual Host
+[1] - Delete a Forward Master Zone
+[2] - Delete a Reverse Master zone 
+[3] - Delete a Virtual Host
  " option
 
 if [ $option = "1" ]; then
+	# list existing master zones
+	echo "-- Exisiting master zones --"
+	ls /var/named/*.hosts
+	echo " "
         read -p "Please, insert the name of Forward Master Zone that you want delete? " for_master_zone
 
 	# delete master zone in named.conf and remove file in /var/named
@@ -19,6 +23,10 @@ if [ $option = "1" ]; then
 fi
 
 if [ $option = "2" ]; then
+	# list existing reverse master zones
+	echo "-- Exisiting reverse master zones --"
+	ls /var/named/*.in-addr.arpa.hosts
+	echo " "
         read -p "Please, insert the IP of Reverse Master Zone that you want delete? " rev_master_ip
 
 	# delete reverse master zone in named.conf and remove file in /var/named
@@ -31,6 +39,11 @@ if [ $option = "2" ]; then
 fi
 
 if [ $option = "3" ]; then
+	
+	# list existing virtual hosts
+	echo "-- Exisiting Virtual Hosts --"
+	ls /etc/httpd/conf.d/*.conf
+	echo " "
         read -p "Please, insert the Virtual Host domain name that you want delete? " vh_name
 
 	# delete httpd virtual host conf file and remove site diretory
