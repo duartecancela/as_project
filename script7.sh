@@ -4,10 +4,11 @@ echo "Start Script 7"
 
 # NFS menu options
 read -p "NFS Menu options - Please choose a number? :
-1 - Create
-2 - Edit
-3 - Delete
-4 - Disable
+[1] - Create
+[2] - Edit
+[3] - Delete
+[4] - Disable
+[5] - View exports file
 " menu_option
 
 
@@ -72,6 +73,10 @@ if [ $menu_option = "4" ]; then
 
 	# restart NFS service
 	systemctl restart nfs
+fi
+
+if [ $menu_option = "5" ]; then
+	cat /etc/exports
 fi
 
 echo "Finish Script 7"
