@@ -10,6 +10,7 @@ read -p "Select the samba Configuration:
 [4] - Change
 [5] - Deactivate
 [6] - Map folder from Windows
+[7] - View SAMBA configuration file
 " choice_number
 
 
@@ -107,6 +108,10 @@ if [ $choice_number = "6" ]; then
 	mount -t cifs -o username=$user_windows //$ip_windows/$folder_windows /$folder_server
 fi
 
+# Show SAMBA configuration file
+if [ $choice_number = "7" ]; then
+	cat /etc/samba/smb.conf
+fi
 
 # Restart service
 systemctl restart smb
