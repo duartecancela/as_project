@@ -13,6 +13,11 @@ allow_new="allow-query    { localhost; any; };"
 sed -i "s/$listen_old/$listen_new/" $file_named_conf
 sed -i "s/$allow_old/$allow_new/" $file_named_conf
 
+# list existing master zones
+echo "-- Exisiting master zones --"
+ls /var/named/*.hosts
+echo " "
+
 # ask user for domain name
 read -p "Insert a domain name to create a master zone with a record type A: " domain_name
 read -p "Insert a IP for the master zone record type A: " master_zone_ip
