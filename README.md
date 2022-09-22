@@ -1,5 +1,5 @@
 # as_project
-System Administration project  
+System Administration Project  
 
 # install vim + plugins
 yum install vim -y  
